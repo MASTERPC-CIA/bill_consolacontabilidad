@@ -10,10 +10,12 @@
     <title>Login</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="assets/template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php base_url('assets/template/css/bootstrap.min.css'); ?>" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="<?php echo base_url('assets/template/js/jquery.js'); ?>"></script>
 
 </head>
 
@@ -24,10 +26,9 @@
             <div class="middle">
                 <div id="login">
                     <form action="<?php echo base_url('login/index'); ?>" method="post">
-                    <!--<form action="<?php echo base_url('Welcome/index'); ?>" method="post">-->
                         <fieldset class="clearfix">
-                            <p ><span class="fa fa-user"></span><input type="text"  Placeholder="Usuario" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-                            <p><span class="fa fa-lock"></span><input type="password"  Placeholder="Clave" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+                            <p ><span class="fa fa-user"></span><input type="text"  id="usuario" name="usuario" Placeholder="Usuario" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+                            <p><span class="fa fa-lock"></span><input type="password" id="clave" name="clave" Placeholder="Clave" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
                             <div>
                                 <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="#"></a></span>
                                 <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="INGRESAR"></span>
@@ -36,7 +37,7 @@
                         <div class="clearfix"></div>
                     </form>
                     <div class="clearfix"></div>
-                </div> <!-- end login -->
+                </div>
                 <div class="logo">PUNTOPYMES
                     <div class="clearfix"></div>
                 </div>
@@ -44,8 +45,10 @@
             </center>
         </div>
     </div>
+
 </body>
 </html>
+
 <style>
 @charset "utf-8";
 

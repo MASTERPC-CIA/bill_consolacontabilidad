@@ -8,7 +8,7 @@
                 <div class = "form-group form-group-sm col-md-5">
                     <div class = "input-group has-warning">
                         <span class = "input-group input-group-addon">RUC</span>
-                        <input type="text" class = "form-control" ng-model="empresa.ruc">
+                        <input type="text" class = "form-control" ng-model="empresa.ruc" ng-maxlength="13" ng-required="true" only-numbers="">
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class = "form-group form-group-sm col-md-12">
                     <div class = "input-group has-warning">
                         <span class = "input-group input-group-addon">RAZON SOCIAL</span>
-                        <input type="text" class = "form-control" ng-model="empresa.nombre">
+                        <input type="text" class = "form-control" ng-model="empresa.nombre" ng-required="true">
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class = "form-group form-group-sm col-md-6">
                     <div class = "input-group has-warning">
                         <span class = "input-group input-group-addon">EMAIL</span>
-                        <input type="text" class = "form-control" ng-model="empresa.email">
+                        <input type="email" class = "form-control" ng-model="empresa.email">
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class = "col-md-12">
-                <button class = "btn btn-success" ng-click="save(empresa);">GUARDAR</button>
+                <button class = "btn btn-success" ng-click="save(empresa);" ng-disabled='form_empresa.$invalid'>GUARDAR</button>
                 <button class = "btn btn-danger" ng-click="cancel();">Cancelar </button>
             </div>
         </form>

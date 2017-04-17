@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php base_url('welcome/logout') ?>">Cerrar Sesion</a>
+                <!--<a class="navbar-brand" ng-click="logout();">Cerrar Sesion</a>-->
             </div>
         </div>
     </nav>
@@ -35,8 +35,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Usuario : <?php echo $this->user->nombres.' '.$this->user->apellidos; ?>
-                </h1>
+                <h1 class="page-header">Usuario : <small><?php echo $this->user->nombres.' '.$this->user->apellidos; ?></small></h1>
             </div>
         </div>
 
@@ -46,10 +45,17 @@
             </div>
             <div class="col-lg-12" style="text-align:right">
                 <?php 
-                    echo tagcontent('button','', array('class'=>"btn btn-primary glyphicon glyphicon-file",'ng-click'=>'nuevo();', 'type'=>"button")); 
+                echo Open('div', array('class'=>'col-lg-12'));
+                    echo tagcontent('button','Nuevo Cliente', array('class'=>"btn btn-primary",'ng-click'=>'nuevo();', 'type'=>"button")); 
+                    echo tagcontent('button','Cerrar Sesion', array('class'=>"btn btn-danger",'ng-click'=>'logout();', 'type'=>"button")); 
+                echo Close('div');
                 ?>
+            <br>
+            <br>
+            <hr>
             </div>
             <?php
+            echo Open('div', array('class'=>'col-lg-12'));
                 echo Open('div', array('ng-repeat'=>'cliente in clientes'));
                     echo Open('div', array('class'=>"col-lg-3 col-sm-6 text-center", 'style'=>'padding: 0px;'));
                         echo Open('a', array('href'=>'{{cliente.name_domain}}', 'target'=>"_blank"));
@@ -59,6 +65,7 @@
                         echo tagcontent('h6', '<b>'.'{{cliente.nombre}}'.'</b> ({{cliente.ruc}})');
                     echo Close('div');
                 echo Close('div');
+            echo Close('div');
             ?>
         <hr>
         </div>

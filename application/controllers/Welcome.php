@@ -16,7 +16,6 @@ class Welcome extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('welcome/index', 'refresh');
 	}
 
 	public function load_login()
@@ -54,9 +53,9 @@ class Welcome extends CI_Controller {
 						);
 			$this->session->set_userdata($user);
 			$this->user = new User();
-			//print_r($this->user);die();
-			echo json_encode($send);
 		}
+		$send['count'] = count($query);
+		echo json_encode($send);
 	}
 
 	public function load_clientes()
@@ -70,6 +69,8 @@ class Welcome extends CI_Controller {
 	{
 		$id_empresa = 0;
 		$data = json_decode(file_get_contents("php://input"));
+		$data->cont_id = $this->user->id;
+		$data->logo = null;
 		$send['id_empresa'] = $this->generic_model->save('empresa', $data);
 		echo json_encode($send);
 	}

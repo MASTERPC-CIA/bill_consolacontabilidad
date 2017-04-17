@@ -24,6 +24,7 @@
     <script src="<?php echo base_url('assets/js/angularjs/modulos/admin/app.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/angularjs/modulos/admin/controller.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/angularjs/modulos/admin/data.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/angularjs/directives.js'); ?>"></script>
 
 </head>
 

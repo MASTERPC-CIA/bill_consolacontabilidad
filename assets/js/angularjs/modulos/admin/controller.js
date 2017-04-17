@@ -1,8 +1,13 @@
 app.controller('ctrl_login', function ($scope, Data, $location) {
+    $scope.error = 0;
     $scope.verificar = function(usuario) {
-
         Data.post('verificar_usuario', usuario).then(function (result) {
-            $location.path('/clientes');
+            if(result.count > 0){
+                $scope.error = 0;
+                $location.path('/clientes');
+            }else{
+                $scope.error = 1;
+            }
         });
     }
 });
@@ -29,11 +34,16 @@ app.controller('ctrl_main', function ($scope, Data, $location, $uibModal) {
             }
         });
         modalInstance.result.then(function (selectedObject) {
-            console.log(selectedObject);
             if(selectedObject.id_empresa > 0){
                 $scope.init();
-                Data.toast({"status": 'ok', "message": 'HA SIDO AGREGADO'});
+                //Data.toast({"status": 'ok', "message": 'HA SIDO AGREGADO'});
             }
+        });
+    };
+
+    $scope.logout = function () {
+        Data.post('logout').then(function (result) {
+            $location.path('/');
         });
     };
 });

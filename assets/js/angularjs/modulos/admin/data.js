@@ -1,7 +1,7 @@
 app.factory("Data", ['$http', '$location',
     function ($http, $q, $location) {
 
-        var serviceBase = 'ats/';
+        var serviceBase = 'welcome/';
 
         var obj = {};
 

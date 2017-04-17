@@ -12,9 +12,7 @@
     <title>Menu Principal</title>
 
     <link href="<?php echo base_url('assets/template/css/bootstrap.min.css'); ?>" rel="stylesheet">
-
     <link href="<?php echo base_url('assets/template/css/round-about.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/ihover-gh-pages/src/ihover.min.css'); ?>" rel="stylesheet">
 
 </head>
 
@@ -37,7 +35,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Usuario : <?php echo $usuario->cont_nombres.' '.$usuario->cont_apellidos; ?>
+                <h1 class="page-header">Usuario : <?php echo $this->user->nombres.' '.$this->user->apellidos; ?>
                 </h1>
             </div>
         </div>
@@ -48,42 +46,22 @@
             </div>
             <div class="col-lg-12" style="text-align:right">
                 <?php 
-                    echo tagcontent('button','', array('class'=>"btn btn-primary glyphicon glyphicon-file",'data-toggle'=>"modal", 'data-target'=>".bs-example-modal-lg", 'type'=>"button")); 
-                    echo Open('div', array('class'=>"modal fade bs-example-modal-lg", 'tabindex'=>"-1", 'role'=>"dialog", 'aria-labelledby'=>"myLargeModalLabel"));
-                        echo Open('div', array('class'=>"modal-dialog modal-lg", 'role'=>"document"));
-                            echo Open('div', array('class'=>"modal-content"));
-                            $this->load->view('login/admin_empresa');
-                            echo Close('div');
-                        echo Close('div');
-                    echo Close('div');
+                    echo tagcontent('button','', array('class'=>"btn btn-primary glyphicon glyphicon-file",'ng-click'=>'nuevo();', 'type'=>"button")); 
                 ?>
             </div>
             <?php
-            $join_clause[0] = array('table'=>'empresa e','condition'=>"e.cont_id = c.cont_id");
-            $clientes = $this->generic_model->get_join('contadora c', $where_data = null, $join_clause, $fields = 'e.*');
-            foreach($clientes as $cliente){
-                echo Open('div', array('class'=>"col-lg-3 col-sm-6 text-center", 'style'=>'padding: 0px;'));
-                    echo Open('a', array('href'=>$cliente->name_domain, 'target'=>"_blank"));
-                        if(empty($cliente->logo)){
-                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>base_url('uploads/no_disponible.png'), 'alt'=>"", 'style'=>'height:100px;width:100px'));
-                        }else{
-                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>$cliente->logo, 'alt'=>"", 'style'=>'height:100px;width:100px'));
-                        }
-                    echo Close('a');
-                    /*echo tagcontent('button','', array('class'=>"btn btn-warning glyphicon glyphicon-edit", 'type'=>"button"));
-                    echo tagcontent('button','', array('class'=>"btn btn-danger glyphicon glyphicon-trash", 'type'=>"button"));*/
-                    if(strlen($cliente->nombre) > 20){
-                        $name_cliente = substr($cliente->nombre, 0, 20);
-                    }else{
-                        $name_cliente = $cliente->nombre;
-                    }
-                    echo tagcontent('h6', '<b>'.$name_cliente.'</b> ('.$cliente->ruc.')');
+                echo Open('div', array('ng-repeat'=>'cliente in clientes'));
+                    echo Open('div', array('class'=>"col-lg-3 col-sm-6 text-center", 'style'=>'padding: 0px;'));
+                        echo Open('a', array('href'=>'{{cliente.name_domain}}', 'target'=>"_blank"));
+                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>'{{cliente.logo}}', 'ng-if'=>'cliente.logo!=null', 'alt'=>"", 'style'=>'height:100px;width:100px'));
+                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>base_url("uploads/no_disponible.png"), 'ng-if'=>'cliente.logo==null', 'alt'=>"", 'style'=>'height:100px;width:100px'));
+                        echo Close('a');
+                        echo tagcontent('h6', '<b>'.'{{cliente.nombre}}'.'</b> ({{cliente.ruc}})');
+                    echo Close('div');
                 echo Close('div');
-            }
-        echo Close('div');
             ?>
         <hr>
-
+        </div>
     </div>
     <script src="<?php echo base_url('assets/template/js/jquery.js'); ?>"></script>
     <script src="<?php echo base_url('assets/template/js/bootstrap.min.js'); ?>"></script>

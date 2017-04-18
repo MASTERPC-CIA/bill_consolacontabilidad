@@ -60,8 +60,9 @@ class Welcome extends CI_Controller {
 
 	public function load_clientes()
 	{
+		$where_data = array('c.cont_id'=>$this->user->id);
 		$join_clause[0] = array('table'=>'empresa e','condition'=>"e.cont_id = c.cont_id");
-        $send['clientes'] = $this->generic_model->get_join('contadora c', $where_data = null, $join_clause, $fields = 'e.*');
+        $send['clientes'] = $this->generic_model->get_join('contadora c', $where_data, $join_clause, $fields = 'e.*');
 		echo json_encode($send);
 	}
 

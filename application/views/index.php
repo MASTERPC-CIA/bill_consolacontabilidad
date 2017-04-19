@@ -35,7 +35,8 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Usuario : <small><?php echo $this->user->nombres.' '.$this->user->apellidos; ?></small></h1>
+                <!-- <h1 class="page-header">Usuario : <small><?php echo $this->user->nombres.' '.$this->user->apellidos; ?></small></h1> -->
+                <h1 class="page-header">Usuario : <small>{{usuario.nombres}} {{usuario.apellidos}}</small></h1>
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-app.controller('ctrl_login', function ($scope, Data, $location) {
+app.controller('ctrl_login', function ($scope, Data, $location, $route) {
     $scope.error = 0;
     $scope.verificar = function(usuario) {
         Data.post('verificar_usuario', usuario).then(function (result) {
@@ -6,6 +6,7 @@ app.controller('ctrl_login', function ($scope, Data, $location) {
                 $scope.error = 0;
                 $location.path('/clientes');
             }else{
+                $location.path('/');
                 $scope.error = 1;
             }
         });
@@ -16,6 +17,7 @@ app.controller('ctrl_main', function ($scope, Data, $location, $uibModal) {
     $scope.init = function() {
         Data.get('load_clientes').then(function (result) {
             $scope.clientes = result.clientes;
+            $scope.usuario = result.usuario;
         });
     }
 

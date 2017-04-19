@@ -15,7 +15,11 @@ class Welcome extends CI_Controller {
 
 	public function logout()
 	{
-		$this->session->sess_destroy();
+		//$this->session->sess_destroy();
+		$this->session->unset_userdata('id');
+		//print_r($this->session->userdata('id'));
+		//print_r($this->user);die();
+		unset($this->user);
 	}
 
 	public function load_login()
@@ -25,7 +29,12 @@ class Welcome extends CI_Controller {
 
 	public function load_main()
 	{
-		$this->load->view('index');
+		//print_r($this->user->id);
+		if(empty($this->user->id)){
+			$this->load->view('login');
+		}else{
+			$this->load->view('index');
+		}
 	}
 
 	public function load_admin_clientes()
@@ -63,6 +72,7 @@ class Welcome extends CI_Controller {
 		$where_data = array('c.cont_id'=>$this->user->id);
 		$join_clause[0] = array('table'=>'empresa e','condition'=>"e.cont_id = c.cont_id");
         $send['clientes'] = $this->generic_model->get_join('contadora c', $where_data, $join_clause, $fields = 'e.*');
+        $send['usuario'] = $this->user;
 		echo json_encode($send);
 	}
 

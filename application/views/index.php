@@ -60,8 +60,8 @@
                 echo Open('div', array('ng-repeat'=>'cliente in clientes'));
                     echo Open('div', array('class'=>"col-lg-3 col-sm-6 text-center", 'style'=>'padding: 0px;'));
                         echo Open('a', array('href'=>'{{cliente.name_domain}}', 'target'=>"_blank"));
-                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>'{{cliente.name_domain}}/uploads/logo.jpeg', 'ng-if'=>'cliente.logo!=null', 'alt'=>"", 'style'=>'height:100px;width:100px'));
-                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>base_url("uploads/no_disponible.png"), 'ng-if'=>'cliente.logo==null', 'alt'=>"", 'style'=>'height:100px;width:100px'));
+                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>'{{cliente.name_domain}}/uploads/logo.jpeg', 'ng-if'=>'cliente.logo!=null', 'alt'=>"", 'style'=>'max-width: 100%; height: auto;'));
+                            echo tagcontent('img', '', array('class'=>"img-thumbnail img-responsive img-center", 'src'=>base_url("uploads/no_disponible.png"), 'ng-if'=>'cliente.logo==null', 'alt'=>"", 'style'=>'max-width: 100%; height: auto;'));
                         echo Close('a');
                         echo tagcontent('h6', '<b>'.'{{cliente.nombre}}'.'</b> ({{cliente.ruc}})');
                     echo Close('div');
